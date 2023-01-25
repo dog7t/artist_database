@@ -61,8 +61,9 @@ fn main() {
   */
 }
 
-fn show_list() {
-    
+fn show_list() {e
+    let artist_vec = 1;
+    println!("{}", artist_vec);
 }
 
 fn remove_artist() {
@@ -73,7 +74,7 @@ fn add_artist() {
     let mut name = String::new();
     let mut twitter = String::new();
     let mut pixiv = String::new();
-    
+
     println!("Name of the artist:");
     io::stdin()
     .read_line(&mut name)
