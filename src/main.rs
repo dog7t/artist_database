@@ -7,7 +7,7 @@ Maybe i could also use this to associate folders to the names and be able to sor
 Notes for Rust:
 how it works in python: make menus, ask for input number, then depending on that number, do stuff. need to check this number and decide what to do after
 
-notes: use structs for replacing the Artist class
+notes: use structs for replacing the Artist class (done)
        use match for making a menu? (done)
 */
 use std::{io, process::exit};
@@ -74,16 +74,21 @@ fn add_artist() {
     let mut twitter = String::new();
     let mut pixiv = String::new();
     
+    println!("Name of the artist:");
     io::stdin()
     .read_line(&mut name)
     .expect("Failed to read line");
+
+    println!("The artists twitter:");
     io::stdin()
     .read_line(&mut twitter)
     .expect("Failed to read line");
+
+    println!("The artists pixiv:");
     io::stdin()
     .read_line(&mut pixiv)
     .expect("Failed to read line");
-   
+    
     let artist = Artist {
             name, twitter, pixiv
         };
