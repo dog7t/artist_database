@@ -70,9 +70,9 @@ fn remove_artist() {
 }
 
 fn add_artist() {
-    let mut name = String::new(),
-    let mut twitter = String::new(),
-    let mut pixiv = String::new(),
+    let mut name = String::new();
+    let mut twitter = String::new();
+    let mut pixiv = String::new();
     
     io::stdin()
     .read_line(&mut name)
@@ -86,7 +86,7 @@ fn add_artist() {
    
     let artist = Artist {
             name, twitter, pixiv
-        }
+        };
 }
 
 fn edit_artist() {
