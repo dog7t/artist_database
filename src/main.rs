@@ -44,6 +44,7 @@ fn open_menu() -> u32 {
 
 // now, match the answer given and then make decision based on that value, maybe return that value 
 fn main() {
+    let mut artist_list: Vec<String> = Vec::new();
     let answer = 
     open_menu();
     match answer {
@@ -55,13 +56,12 @@ fn main() {
         _epic => ()
     };
   /* 
-    let mut artist_list = Vec::new();
     artist_list.push("epic");
     println!("{:#?}", artist_list);
   */
 }
 
-fn show_list() {e
+fn show_list() {
     let artist_vec = 1;
     println!("{}", artist_vec);
 }
@@ -93,7 +93,8 @@ fn add_artist() {
     let artist = Artist {
             name, twitter, pixiv
         };
-}
+        artist_list.push(artist);
+    }
 
 fn edit_artist() {
     
