@@ -11,10 +11,11 @@ notes: use structs for replacing the Artist class (done)
        use match for making a menu? (done)
 */
 use std::{io, process::exit};
+#[derive(Debug)]
 struct Artist {
     name: String,
     twitter: String,
-    pixiv: String
+    pixiv: String,
 }
 
 fn open_menu() -> u32 {
@@ -31,34 +32,35 @@ fn open_menu() -> u32 {
         io::stdin()
             .read_line(&mut answer)
             .expect("Failed to read line");
-        
+
         let answer: u32 = match answer.trim().parse() {
             Ok(num) => num,
             Err(_) => {
                 println!("Your option is invalid. Please choose one of the 5 options");
                 continue;
             }
-         }; return answer;
+        };
+        return answer;
     }
 }
 
-// now, match the answer given and then make decision based on that value, maybe return that value 
+// now, match the answer given and then make decision based on that value, maybe return that value
 fn main() {
-    let mut artist_list: Vec<String> = Vec::new();
-    let answer = 
-    open_menu();
+    let mut artist_list: Vec<Artist> = Vec::new();
+    let answer = open_menu();
     match answer {
         1 => show_list(),
         2 => remove_artist(), // note: also needs to ask if you want to remove artist or a classif here
-        3 => add_artist(),
+        3 => add_artist(&mut artist_list),
         4 => edit_artist(),
         5 => exit(1),
-        _epic => ()
+        _epic => (),
     };
-  /* 
-    artist_list.push("epic");
-    println!("{:#?}", artist_list);
-  */
+    dbg!(&artist_list);
+    /*
+      artist_list.push("epic");
+      println!("{:#?}", artist_list);
+    */
 }
 
 fn show_list() {
@@ -66,36 +68,34 @@ fn show_list() {
     println!("{}", artist_vec);
 }
 
-fn remove_artist() {
-    
-}
+fn remove_artist() {}
 
-fn add_artist() {
+fn add_artist(artist_list: &mut Vec<Artist>) {
     let mut name = String::new();
     let mut twitter = String::new();
     let mut pixiv = String::new();
 
     println!("Name of the artist:");
     io::stdin()
-    .read_line(&mut name)
-    .expect("Failed to read line");
+        .read_line(&mut name)
+        .expect("Failed to read line");
 
     println!("The artists twitter:");
     io::stdin()
-    .read_line(&mut twitter)
-    .expect("Failed to read line");
+        .read_line(&mut twitter)
+        .expect("Failed to read line");
 
     println!("The artists pixiv:");
     io::stdin()
-    .read_line(&mut pixiv)
-    .expect("Failed to read line");
-    
-    let artist = Artist {
-            name, twitter, pixiv
-        };
-        artist_list.push(artist);
-    }
+        .read_line(&mut pixiv)
+        .expect("Failed to read line");
 
-fn edit_artist() {
-    
+    let artist = Artist {
+        name,
+        twitter,
+        pixiv,
+    };
+    artist_list.push(artist);
 }
+
+fn edit_artist() {}
